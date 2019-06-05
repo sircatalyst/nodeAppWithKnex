@@ -11,8 +11,18 @@ module.exports = {
       password: ''
     },
     pool: {
-      min: 2,
-      max: 10
+      max: 150,
+      min: 0,
+      acquire: 10 * 10000
     },
-    }
+  },
+  test: {
+    client: 'mysql',
+    connection: {
+      host : '127.0.0.1',
+      database: 'test-knex',
+      user: 'root',
+      password: ''
+    },
+  }
 };
