@@ -10,5 +10,8 @@ module.exports = {
     },
     create(sticker) {
         return connection('sticker').insert(sticker, '*');
+    },
+    update(id, sticker) {
+        return connection('sticker').where('id', id).update(sticker, '*');
     }
 }
