@@ -43,13 +43,28 @@ describe('CRUD stickers', () => {
 
     it('show one a record by id', (done) => {
         request(app)
-            .get('api/v1/stickers'/5)
+            .get('api/v1/stickers/5')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)
             .then((response) => {
                 expect(response.body).to.be.a('object');
                 expect(response.body).to.be.deep.equal(fixtures.stickers[4]);
+                done();
+            })
+    });
+
+    it('create a record', (done) => {
+        request(app)
+            .get('api/v1/stickers')
+            .send(fixtures.sticker)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
+                fixtures.sticker.id = response.body.id
+                expect(response.body).to.be.deep.equal(fixtures.sticker);
                 done();
             })
     });

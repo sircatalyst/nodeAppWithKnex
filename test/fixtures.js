@@ -43,4 +43,11 @@ const stickers = [
     }
 ];
 
-module.exports = stickers;
+const sticker =   {
+    "title": "Javascript Hexagon",
+    "description": "JS Logo",
+    "rating": 8,
+    "url": "http://devstickers.com/assets/img/pro"
+}
+
+module.exports = {stickers, sticker};
