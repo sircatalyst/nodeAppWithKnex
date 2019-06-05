@@ -7,5 +7,8 @@ module.exports = {
     },
     getOne(id) {
         return connection('sticker').where('id', id).first(); //returns the first
+    },
+    create(sticker) {
+        return connection('sticker').insert(sticker, '*');
     }
 }
