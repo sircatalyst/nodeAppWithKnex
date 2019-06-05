@@ -56,7 +56,7 @@ describe('CRUD stickers', () => {
 
     it('create a record', (done) => {
         request(app)
-            .get('api/v1/stickers')
+            .post('api/v1/stickers')
             .send(fixtures.sticker)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -64,6 +64,21 @@ describe('CRUD stickers', () => {
             .then((response) => {
                 expect(response.body).to.be.a('object');
                 fixtures.sticker.id = response.body.id
+                expect(response.body).to.be.deep.equal(fixtures.sticker);
+                done();
+            })
+    });
+
+    it('update a record', (done) => {
+        fixtures.sticker.rating = 5;
+        request(app)
+            .put('api/v1/stickers/10')
+            .send(fixtures.sticker)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .then((response) => {
+                expect(response.body).to.be.a('object');
                 expect(response.body).to.be.deep.equal(fixtures.sticker);
                 done();
             })
