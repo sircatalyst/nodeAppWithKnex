@@ -13,5 +13,8 @@ module.exports = {
     },
     update(id, sticker) {
         return connection('sticker').where('id', id).update(sticker, '*');
+    },
+    delete(id) {
+        return connection('sticker').where('id', id).del();
     }
 }
